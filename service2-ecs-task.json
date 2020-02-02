@@ -1,0 +1,29 @@
+{
+    "executionRoleArn": "arn:aws:iam::<ACCOUNTID>:role/ecsTaskExecutionRole",
+    "containerDefinitions": [{
+        "name": "servicetwo",
+        "image": "<ACCOUNTID>.dkr.ecr.ap-southeast-1.amazonaws.com/servicetwo:latest",
+        "memory": 512,
+        "cpu": 256,
+        "logConfiguration": {
+            "logDriver": "awslogs",
+            "options": {
+                "awslogs-group": "/ecs/fargate",
+                "awslogs-region": "ap-southeast-1",
+                "awslogs-stream-prefix": "servicetwo"
+            }
+        },
+        "essential": true,
+        "portMappings": [{
+            "containerPort": 8080,
+            "hostPort": 8080
+        }]
+    }],
+    "family": "servicetwo",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "memory": "512",
+    "cpu": "256"
+}
